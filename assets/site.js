@@ -78,6 +78,7 @@
   if (heroVid && !reduce.matches && !saveData) {
     window.addEventListener('load', function () {
       setTimeout(function () {
+        heroVid.addEventListener('playing', function () { heroVid.classList.add('ready'); }, { once: true });
         heroVid.src = heroVid.getAttribute('data-src');
         var p = heroVid.play(); if (p && p.catch) p.catch(function () {});
       }, 600);
@@ -93,7 +94,6 @@
   reels.forEach(function (reel) {
     var v = reel.querySelector('video');
     var btn = reel.querySelector('.vbtn');
-    v.removeAttribute('controls');
     v.addEventListener('play', function () { setBtn(btn, true); });
     v.addEventListener('pause', function () { setBtn(btn, false); });
     btn.addEventListener('click', function () {
