@@ -115,6 +115,16 @@
     reels.forEach(function (r) { vio.observe(r); });
   }
 
+  /* Founder photo: the shipped placeholder (398x398 PLG symbol) is decorative, a real photo keeps its alt */
+  var founder = document.querySelector('.founder img');
+  function checkFounder() {
+    if (founder.naturalWidth === 398 && founder.naturalHeight === 398) {
+      founder.alt = '';
+      founder.parentNode.classList.add('is-placeholder');
+    }
+  }
+  if (founder) { if (founder.complete) checkFounder(); else founder.addEventListener('load', checkFounder); }
+
   /* Rail prev/next */
   var rail = document.getElementById('rail');
   var rbtns = document.querySelectorAll('.rbtn');

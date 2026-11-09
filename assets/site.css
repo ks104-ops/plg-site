@@ -165,7 +165,9 @@ p{margin:0}
 /* About */
 .about{background:var(--bg-soft)}
 .about-in{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,6vw,72px);align-items:center}
-.about-mark img{width:clamp(96px,14vw,160px)}
+.founder{display:block;width:clamp(160px,16vw,200px);flex:none}
+.founder img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;background:#fff;box-shadow:0 0 0 5px #fff,0 0 0 8px var(--teal),0 24px 48px -24px rgba(6,26,51,.45)}
+.founder.is-placeholder img{object-fit:contain}
 @media (max-width:640px){.about-in{grid-template-columns:1fr}}
 
 /* FAQ */
