@@ -1,0 +1,8 @@
+# Cloudflare Pages config for putnamleads.com.
+# "npm run build" copies only the public site (index.html, robots.txt, assets/) into dist/, which is all that gets published.
+# The Marketing Check-Up API lives in functions/.
+# The D1 database block below this line is added by:
+#   npx wrangler d1 create plg-checkup --binding DB --update-config
+name = "putnamleads"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
