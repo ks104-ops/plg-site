@@ -275,12 +275,11 @@
 <!-- ABOUT -->
 <section class="section about" id="about" aria-labelledby="about-h">
   <div class="wrap about-in">
-    <!-- FOUNDER PHOTO: to add Kyle's real photo, replace assets/brand/kyle.webp and assets/brand/kyle.jpg
-         with a square headshot (600x600 recommended). No code change needed.
-         The current files are a 398x398 PLG-symbol placeholder; site.js detects that size and treats it as decorative. -->
+    <!-- Founder headshot, 600x600. WebP first, JPEG fallback.
+         site.js only treats a 398x398 file as the old PLG-symbol placeholder. -->
     <picture class="founder reveal">
       <source srcset="assets/brand/kyle.webp" type="image/webp">
-      <img src="assets/brand/kyle.jpg" width="200" height="200" alt="Kyle Simmons, founder of Putnam Lead Group" loading="lazy" decoding="async">
+      <img src="assets/brand/kyle.jpg" width="600" height="600" alt="Kyle Simmons, founder of Putnam Lead Group" loading="lazy" decoding="async">
     </picture>
     <div>
       <p class="eyebrow reveal">About</p>
