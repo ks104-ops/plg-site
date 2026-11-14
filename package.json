@@ -1,0 +1,14 @@
+{
+  "name": "putnamleads",
+  "private": true,
+  "description": "putnamleads.com static site plus the Marketing Check-Up API (Cloudflare Pages Functions + D1).",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && wrangler pages dev",
+    "db:migrate:local": "wrangler d1 migrations apply plg-checkup --local",
+    "db:migrate:remote": "wrangler d1 migrations apply plg-checkup --remote"
+  },
+  "devDependencies": {
+    "wrangler": "4.162.0"
+  }
+}

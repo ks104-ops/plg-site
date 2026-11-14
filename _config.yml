@@ -1,0 +1,12 @@
+# GitHub Pages (Jekyll): publish only the website, not the API code or tooling.
+exclude:
+  - functions
+  - lib
+  - migrations
+  - wrangler.toml
+  - package.json
+  - package-lock.json
+  - node_modules
+  - CHECKUP-SETUP.md
+  - scripts
+  - dist

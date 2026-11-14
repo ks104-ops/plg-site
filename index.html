@@ -73,7 +73,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#see-it">See it work</a></li>
         <li><a href="#how">How it works</a></li>
-        <li><a href="#pilot">Pilot</a></li>
+        <li><a href="#checkup">Check-Up</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
@@ -237,37 +237,36 @@
         <p>A short, plain-English report each month: what we did and what changed. No jargon.</p>
       </li>
     </ol>
+    <p class="steps-alt reveal">Not ready to talk yet? <a class="link-arrow" href="#checkup">Take the 2-minute Marketing Check-Up</a></p>
   </div>
 </section>
 
-<!-- PILOT -->
-<section class="pilot" id="pilot" aria-labelledby="pilot-h">
-  <div class="wrap pilot-in">
-    <div>
-      <p class="eyebrow light reveal">Founding pilot program</p>
-      <h2 id="pilot-h" class="reveal">90 days.<br><span class="teal">Free.</span></h2>
-      <p class="sub light reveal">We&rsquo;re opening 3 founding spots to local service businesses in Putnam County. The goal is simple: more leads and more bids, without adding staff.</p>
-      <div class="cta-row reveal">
-        <a class="btn btn-teal" href="https://calendar.app.google/a9EtzHDwfKSSUBdz9" target="_blank" rel="noopener">Ask about a pilot spot<span class="sr"> (opens in new tab)</span></a>
-        <a class="link-arrow light" href="mailto:hello@putnamleads.com?subject=Founding%20pilot%20program">or email us</a>
-      </div>
-      <p class="fine light reveal">15 minutes. No obligation.</p>
+<!-- MARKETING CHECK-UP -->
+<section class="checkup" id="checkup" aria-labelledby="checkup-h">
+  <div class="wrap checkup-in">
+    <div class="checkup-copy">
+      <p class="eyebrow light reveal">Free Marketing Check-Up</p>
+      <h2 id="checkup-h" class="reveal">Your marketing,<br><span class="teal">checked in 2&nbsp;minutes.</span></h2>
+      <p class="sub light reveal">Ten quick questions about how customers find you today. You get your three biggest opportunities right away, in plain English.</p>
+      <ul class="checks reveal">
+        <li>Mostly taps, made for your phone</li>
+        <li>No email or phone number needed</li>
+        <li>Your answers are never sold</li>
+      </ul>
     </div>
-    <div class="pilot-card reveal">
-      <h3>What you get</h3>
-      <ul class="checks">
-        <li>Google Business Profile cleanup</li>
-        <li>Review replies and review requests</li>
-        <li>Social posts from your job-site photos</li>
-        <li>Missed-call text-back and follow-ups</li>
-        <li>A plain-English monthly report</li>
-      </ul>
-      <h3>What we ask</h3>
-      <ul class="checks">
-        <li>Honest feedback along the way</li>
-        <li>A quick check-in once a month</li>
-      </ul>
-      <p class="fine light">Best fit: lawn care, HVAC, plumbing, roofing, and other contractors.</p>
+    <div class="quiz reveal" id="quiz" data-api="api/">
+      <div class="q-stage">
+        <div class="q-intro">
+          <p class="q-meta">About 2 minutes &middot; 10 questions</p>
+          <h3 class="q-h">See where your next calls could come from.</h3>
+          <p class="q-hint">Answer a few questions about your business. We&rsquo;ll show you what to focus on first.</p>
+          <button type="button" class="btn q-start">Start the check-up</button>
+          <noscript><p class="q-hint">The check-up needs JavaScript. You can also call or text <a href="tel:+13862277496">(386)&nbsp;227-7496</a> or email <a href="mailto:hello@putnamleads.com">hello@putnamleads.com</a>.</p></noscript>
+        </div>
+      </div>
+      <p class="q-privacy">We collect your answers and, only if you choose, your name and contact info. It&rsquo;s used only to improve PLG and to follow up if you ask, and it&rsquo;s never sold.</p>
+      <div class="q-hpwrap" aria-hidden="true"><label>Leave this empty<input class="q-hp" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <p class="sr q-live" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -296,12 +295,8 @@
     <h2 id="faq-h" class="reveal">Good questions.</h2>
     <div class="qa">
       <details class="reveal">
-        <summary>What does the pilot cost?</summary>
-        <p>Nothing for 90 days. At the end, you decide whether to keep going. No pressure either way.</p>
-      </details>
-      <details class="reveal">
-        <summary>What happens after 90 days?</summary>
-        <p>You decide. Keep going on a simple monthly plan we&rsquo;ll quote on the call, or walk away. No contracts during the pilot.</p>
+        <summary>What happens to my check-up answers?</summary>
+        <p>They help us understand what local owners need most. Contact info is optional and only used to follow up if you ask. We never sell any of it.</p>
       </details>
       <details class="reveal">
         <summary>Do I have to learn new software?</summary>
@@ -358,5 +353,6 @@
 </footer>
 
 <script src="assets/site.js" defer></script>
+<script type="module" src="assets/quiz.js"></script>
 </body>
 </html>
