@@ -115,7 +115,7 @@
     reels.forEach(function (r) { vio.observe(r); });
   }
 
-  /* Founder photo: the shipped placeholder (398x398 PLG symbol) is decorative, a real photo keeps its alt */
+  /* A 398x398 file is the old PLG-symbol placeholder and is decorative. A real photo keeps its alt. */
   var founder = document.querySelector('.founder img');
   function checkFounder() {
     if (founder.naturalWidth === 398 && founder.naturalHeight === 398) {
