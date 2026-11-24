@@ -247,6 +247,7 @@ function footer(p) {
       <h3>Free help</h3>
       <ul>
         <li><a href="/guides/google-profile-check/">60-second Google profile check</a></li>
+        <li><a href="/guides/ai-search-test/">2-minute AI search test</a></li>
         <li><a href="/#faq">Questions and answers</a></li>
         <li><a href="${B.book}" target="_blank" rel="noopener">Book a free call${newTab}</a></li>
       </ul>
@@ -782,6 +783,7 @@ ${pageHero(items, 'AI search', 'Be part of the answer when customers ask AI.', '
 
     <h2>What changes for you</h2>
     <p>You&rsquo;re in the running where your next customer is already looking, with the same correct information on Google, Apple Maps, Bing and in AI answers.</p>
+    <p>Want to see where you stand first? Try the free <a href="/guides/ai-search-test/">2-minute AI search test</a>.</p>
     <p class="note">This work is built into the <a href="/pricing/#cleanup">$${B.cleanup} cleanup</a> and kept current by the <a href="/pricing/#monthly">$${B.monthly} a month plan</a>.</p>
     <div class="cta-row">${bookBtn()} ${textLink()}</div>
   </div>
@@ -912,6 +914,73 @@ ${steps.map(([t, d]) => `      <li><strong>${t}.</strong> ${d}</li>`).join('\n')
     <p class="note">Got more than two &ldquo;no&rdquo; answers? Text me your business name and I&rsquo;ll run this check for you, free, and tell you what I&rsquo;d fix first.</p>
     <div class="cta-row"><a class="btn" href="${attr(SMS)}">Text ${B.phoneTxt}</a> <a class="link-arrow" href="/pricing/">See pricing</a></div>
     <p class="updated">By ${B.founder} &middot; Updated November 24, 2026</p>
+  </div>
+</section>
+</main>
+`;
+  pages.push(p);
+}
+
+// GUIDE: AI SEARCH TEST (first drafted on the marketing branch, folded in here)
+{
+  const items = [['/', 'Home'], ['/guides/ai-search-test/', 'AI search test']];
+  const faqs = [
+    { q: 'Can anyone guarantee ChatGPT will recommend my business?', a: 'No. Nobody controls what AI tools say. What you can do is make sure the facts about your business are complete, consistent and easy to find, so those tools have good information to work with.' },
+    { q: 'Which AI tools should I test?', a: 'Start with ChatGPT, Google (look for the AI answer at the top or the AI Mode tab), Gemini and Perplexity. Customers use different ones, so check at least two.' },
+    { q: 'Do I need a website for AI search?', a: 'It helps a lot. A simple page that names your services and the towns you serve gives AI tools and Google something clear to read. Your Google profile and reviews still matter most for most local trades.' },
+    { q: 'How often should I re-test?', a: 'Once a month is plenty. Use the same questions each time so you can see whether anything changed.' },
+  ];
+  const p = {
+    path: '/guides/ai-search-test/', file: 'guides/ai-search-test/index.html', priority: '0.7', ogType: 'article',
+    title: 'Does ChatGPT Recommend You? Free AI Search Test | PLG',
+    description: 'A free 2-minute test for Palatka and Putnam County businesses: see if ChatGPT, Gemini or Perplexity names you, plus 7 fixes you can do yourself.',
+  };
+  p.schema = [business, webPage(p, { '@type': 'WebPage' }), crumbLd(items), { '@type': 'Article', '@id': `${SITE}${p.path}#article`, headline: 'Does ChatGPT recommend your business? A free 2-minute AI search test', description: p.description, author: { '@id': ID.kyle }, publisher: { '@id': ID.biz }, datePublished: UPDATED, dateModified: UPDATED, mainEntityOfPage: { '@id': `${SITE}${p.path}#webpage` }, image: `${SITE}/assets/brand/PLG-open-graph-1200x630.jpg`, inLanguage: 'en-US' }, faqLd(faqs)];
+  p.body = `
+<main id="main">
+${pageHero(items, 'Free guide', 'Does ChatGPT recommend your business?', 'More people now ask ChatGPT, Gemini, Perplexity or Google&rsquo;s AI answers &ldquo;who&rsquo;s a good roofer near Palatka?&rdquo; instead of scrolling through results. Here&rsquo;s a free test you can run on your phone right now.', false)}
+
+<section class="section tight" aria-labelledby="test-h">
+  <div class="wrap prose">
+    <h2 id="test-h">The 2-minute test</h2>
+    <ol>
+      <li>Open ChatGPT, Gemini, Perplexity, or Google and look at the AI answer at the top.</li>
+      <li>Ask: &ldquo;Who&rsquo;s a good [your trade] in [your town], Florida?&rdquo; For example, &ldquo;Who&rsquo;s a good lawn care company in Palatka, Florida?&rdquo;</li>
+      <li>Then ask: &ldquo;What do people say about [your business name] in [your town]?&rdquo;</li>
+      <li>Write down three things: did you come up, are your phone and services right, and who came up instead?</li>
+    </ol>
+    <p class="note">Not sure what you&rsquo;re looking at? Text me your business name and trade. I&rsquo;ll run this test plus a Google check and text you what I find. Free.</p>
+    <div class="cta-row"><a class="btn" href="${attr(SMS)}">Text ${B.phoneTxt}</a> <a class="link-arrow" href="/services/ai-search/">How we help with AI search</a></div>
+
+    <h2>Why a good business gets left out</h2>
+    <p>AI tools tend to build their answers from what&rsquo;s already published about you: your Google profile, your reviews, your website, and listings like Yelp, Facebook, Apple Maps and Bing. When those are thin or don&rsquo;t match, the tool has little to go on, so it names someone else. The usual gaps:</p>
+    <ul>
+      <li>A Google profile with missing services, old photos or no service area.</li>
+      <li>Only a handful of reviews, or reviews nobody answered.</li>
+      <li>No website, or a website that never says which towns you serve.</li>
+      <li>A different phone number or business name on different sites.</li>
+    </ul>
+
+    <h2>7 fixes you can do yourself</h2>
+    <ol>
+      <li>Finish every section of your Google Business Profile, especially services and service area.</li>
+      <li>Use the exact same business name, phone and town list everywhere.</li>
+      <li>Ask every happy customer for a Google review, and reply to every review you get.</li>
+      <li>Put a sentence on your website like &ldquo;We do lawn care in Palatka, East Palatka and Interlachen.&rdquo;</li>
+      <li>Add a short questions-and-answers section to your site with the questions customers really ask.</li>
+      <li>Claim your free listings on Apple Maps, Bing and Yelp and match them to Google.</li>
+      <li>Add fresh job photos to Google every month.</li>
+    </ol>
+    <p>None of this is a trick. It&rsquo;s making the true facts about your business easy for people and machines to find.</p>
+    <p class="updated">By ${B.founder} &middot; Updated November 24, 2026</p>
+  </div>
+</section>
+
+<section class="section faq" aria-labelledby="faq-h">
+  <div class="wrap narrow">
+    <p class="eyebrow">AI search test questions</p>
+    <h2 id="faq-h">Plain answers.</h2>
+    ${faqHtml(faqs)}
   </div>
 </section>
 </main>
@@ -1109,6 +1178,7 @@ const llms = `# ${B.name}
 - [Service area](${SITE}/service-area/): towns served in Putnam County
 - [About](${SITE}/about/): ${B.founder} and how PLG works
 - [60-second Google profile check](${SITE}/guides/google-profile-check/): free self-check for local businesses
+- [AI search test](${SITE}/guides/ai-search-test/): free 2-minute test of whether ChatGPT, Gemini or Perplexity names a local business, plus 7 fixes
 - [Privacy](${SITE}/privacy/), [Terms](${SITE}/terms/), [Accessibility](${SITE}/accessibility/)
 `;
 writeFileSync(join(ROOT, 'llms.txt'), llms);
