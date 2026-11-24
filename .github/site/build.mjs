@@ -37,7 +37,7 @@ const B = {
 };
 const SMS_BODY = "Hi Kyle, can you check how my business shows up? It's: ";
 const SMS = `sms:${B.phone}?&body=${encodeURIComponent(SMS_BODY)}`;
-const TOWNS = ['Palatka', 'East Palatka', 'Crescent City', 'Interlachen', 'Welaka', 'Pomona Park', 'San Mateo', 'Satsuma', 'Hollister', 'Florahome', 'Putnam Hall', 'Georgetown', 'Bostwick', 'Lake Como'];
+const TOWNS = ['Palatka', 'East Palatka', 'Crescent City', 'Interlachen', 'Welaka', 'Pomona Park', 'San Mateo', 'Satsuma', 'Hollister', 'Florahome', 'Putnam Hall', 'Georgetown', 'Bostwick', 'Lake Como', 'Melrose'];
 const TRADES = ['lawn care and landscaping', 'HVAC', 'plumbing', 'roofing', 'electrical', 'pressure washing', 'pest control', 'tree service', 'fencing', 'metal fabrication'];
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -51,7 +51,7 @@ const textLink = (label = 'or text me your business name', cls = 'link-arrow') =
 const ID = { biz: `${SITE}/#business`, site: `${SITE}/#website`, kyle: `${SITE}/#kyle`, cleanup: `${SITE}/pricing/#cleanup`, monthly: `${SITE}/pricing/#monthly` };
 const offers = [
   { '@type': 'Offer', '@id': ID.cleanup, name: 'One-time cleanup', description: 'Google Business Profile, Apple Maps, Bing and directory cleanup, plus website wording fixes, for one location.', price: String(B.cleanup), priceCurrency: 'USD', url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
-  { '@type': 'Offer', '@id': ID.monthly, name: 'Monthly plan', description: 'Ongoing listing upkeep, review replies, fresh Google posts from your job photos, one new page a month and a plain-English monthly report.', price: String(B.monthly), priceCurrency: 'USD', priceSpecification: { '@type': 'UnitPriceSpecification', price: String(B.monthly), priceCurrency: 'USD', unitCode: 'MON', referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' } }, url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
+  { '@type': 'Offer', '@id': ID.monthly, name: 'Keep It Fresh monthly plan', description: 'A Google post every week, your job photos added, every review answered, holiday hours handled and a plain monthly report. Month to month, stop with 30 days written notice.', price: String(B.monthly), priceCurrency: 'USD', priceSpecification: { '@type': 'UnitPriceSpecification', price: String(B.monthly), priceCurrency: 'USD', unitCode: 'MON', referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' } }, url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
 ];
 const areaServed = [
   { '@type': 'AdministrativeArea', name: 'Putnam County, Florida', sameAs: 'https://en.wikipedia.org/wiki/Putnam_County,_Florida' },
@@ -299,18 +299,21 @@ const CLEANUP_ITEMS = [
   'A plain-English list of everything we fixed',
 ];
 const MONTHLY_ITEMS = [
-  'Every new Google review gets a thoughtful reply, in your business&rsquo;s name',
-  'Fresh posts on your Google profile from your job photos',
-  'One new page or post a month aimed at a service or town you want more work in',
-  'Listings kept accurate when your hours, services or photos change',
+  'A new post on your Google profile every week',
+  'Your job photos added to your profile',
+  'Every Google review answered, in your business&rsquo;s name',
+  'Holiday hours set before every holiday',
   'A short, plain-English report each month: what we did and what changed',
 ];
+const TERMS_LINE = 'Month to month. Stop anytime with 30 days&rsquo; written notice.';
+const FOUNDING = `<strong>Founding 6:</strong> our first 6 monthly clients keep $${B.monthly} a month for as long as they stay.`;
 
 const PRICE_FAQ = [
   { q: 'How much does Putnam Lead Group cost?', a: `Two simple prices. The one-time cleanup is $${B.cleanup}. The optional monthly plan is $${B.monthly} a month. You&rsquo;ll know the price before any work starts.` },
-  { q: 'Is there a contract?', a: 'No long contract. The monthly plan is month to month, and you can cancel anytime.' },
+  { q: 'Is there a contract?', a: 'No long contract. The monthly plan is month to month. To stop, give us 30 days&rsquo; written notice, by email or text.' },
+  { q: 'What is the Founding 6?', a: `Our first 6 monthly clients keep the $${B.monthly} a month price for as long as they stay on the plan, even if the price goes up later.` },
   { q: 'What&rsquo;s included in the $299 cleanup?', a: 'We set up or clean up your Google Business Profile, create or fix your Apple Maps and Bing listings, make your name, phone and website match across the main directories, and tidy your website wording if you have one. You get a plain-English list of what we fixed.' },
-  { q: 'What does the $175 a month plan do?', a: 'It keeps everything fresh after the cleanup: review replies, new Google posts from your job photos, one new page or post a month for a service or town you want more of, accurate listings, and a short monthly report.' },
+  { q: 'What does the $175 a month plan do?', a: 'The Keep It Fresh plan keeps your profile active after the cleanup: a new Google post every week, your job photos added, every review answered, holiday hours set, and a short plain-English report each month.' },
   { q: 'What&rsquo;s not included?', a: 'Building a brand-new website, paid ads, paid tools or directory upgrades, and any promise of rankings or a number of leads. If you ever need one of those, we&rsquo;ll quote it first.' },
   { q: 'Do I keep my accounts?', a: 'Yes. Your Google profile, listings, website and social accounts stay in your name. We work as a manager you can remove at any time.' },
 ];
@@ -519,10 +522,11 @@ ${[
       </article>
       <article class="plan featured reveal">
         <p class="tag">Keep it fresh</p>
-        <h3>Monthly plan</h3>
+        <h3>Keep It Fresh plan</h3>
         <p class="price">$${B.monthly}<small>a month</small></p>
-        <p>Month to month. Cancel anytime.</p>
+        <p>${TERMS_LINE}</p>
         ${checks(MONTHLY_ITEMS.slice(0, 4))}
+        <p class="founding">${FOUNDING}</p>
         <div class="cta-row">${bookBtn('Book a free call', 'btn btn-teal')}</div>
       </article>
     </div>
@@ -569,7 +573,7 @@ ${[
   const p = {
     path: '/pricing/', file: 'pricing/index.html', priority: '0.9',
     title: `Pricing: $${B.cleanup} Cleanup, $${B.monthly}/Month Plan | Putnam Lead Group`,
-    description: `A $${B.cleanup} one-time Google, Apple Maps and Bing cleanup, plus an optional $${B.monthly} a month plan for Putnam County businesses. Cancel anytime.`,
+    description: `A $${B.cleanup} one-time Google, Apple Maps and Bing cleanup, plus an optional $${B.monthly} a month plan for Putnam County businesses. Month to month.`,
   };
   p.schema = [business, webPage(p), crumbLd(items), faqLd(PRICE_FAQ)];
   p.body = `
@@ -590,10 +594,11 @@ ${pageHero(items, 'Pricing', `Two prices.<br>No surprises.`, `A $${B.cleanup} on
       </article>
       <article class="plan featured" id="monthly">
         <p class="tag">Keep it fresh</p>
-        <h3>Monthly plan</h3>
+        <h3>Keep It Fresh plan</h3>
         <p class="price">$${B.monthly}<small>a month</small></p>
-        <p>Month to month. Cancel anytime. Most businesses start it after the cleanup.</p>
+        <p>${TERMS_LINE} Most businesses start it after the cleanup.</p>
         ${checks(MONTHLY_ITEMS)}
+        <p class="founding">${FOUNDING}</p>
         <div class="cta-row">${bookBtn('Book a free call', 'btn btn-teal')}</div>
       </article>
     </div>
@@ -1044,6 +1049,8 @@ ${pageHero(items, 'Terms', 'Terms of use, plainly.', 'By using this website, you
     <p>This website explains what ${B.legal} does and how to reach us. It&rsquo;s general information, not legal, tax or financial advice.</p>
     <h2>Prices</h2>
     <p>Prices on this site are for one business location in Putnam County, Florida. Before any work starts, we confirm in writing what&rsquo;s included and what it costs. Prices on the site may change, but the price we agree on is the price you pay.</p>
+    <h2>The monthly plan</h2>
+    <p>The Keep It Fresh plan is month to month. To stop it, send us written notice by email or text, and the plan ends 30 days later. Founding 6 clients keep their $${B.monthly} a month price for as long as they stay on the plan without a break.</p>
     <h2>No guarantees on results</h2>
     <p>Google, Apple, Bing and AI tools decide what they show. We don&rsquo;t promise rankings, review counts, AI recommendations or a number of leads, and you should be careful with anyone who does.</p>
     <h2>Your accounts</h2>
@@ -1157,7 +1164,7 @@ const llms = `# ${B.name}
 ## Pricing
 
 - One-time cleanup: $${B.cleanup}. Google Business Profile setup or cleanup, Apple Maps and Bing listings, matching name, phone and website on the main directories, help recovering a lost Google profile, and website wording fixes if the business has a site. One location.
-- Monthly plan: $${B.monthly} a month, month to month, cancel anytime. Review replies, fresh Google posts from job photos, one new page or post a month, listing upkeep and a plain-English monthly report.
+- Keep It Fresh monthly plan: $${B.monthly} a month, month to month, stop with 30 days' written notice. A Google post every week, job photos added, every review answered, holiday hours handled and a plain-English monthly report. Founding 6: the first 6 monthly clients keep $${B.monthly} a month for as long as they stay.
 - Follow-up automations such as missed-call text-back are quoted on the call.
 - Not included: new website builds, paid ads, paid tools, or any promise of rankings or lead counts.
 

@@ -33,7 +33,7 @@ const pathFor = (file) => {
   return '/' + r;
 };
 
-const BANNED = ['free 90', '90 days.', 'founding pilot', 'pilot spot', 'no contracts during', 'unlock', 'game-changer', 'leverage', 'elevate', 'supercharge', 'cutting-edge', 'seamless', 'synergy', 'next-level', 'revolutionize', "don't miss out", 'thrilled to', 'take it to the next level', 'empower', 'transform your business', '10x', 'secret sauce', 'happy holidays', 'double your leads', 'guaranteed results', '#1 on google'];
+const BANNED = ['cancel anytime', 'free 90', '90 days.', 'founding pilot', 'pilot spot', 'no contracts during', 'unlock', 'game-changer', 'leverage', 'elevate', 'supercharge', 'cutting-edge', 'seamless', 'synergy', 'next-level', 'revolutionize', "don't miss out", 'thrilled to', 'take it to the next level', 'empower', 'transform your business', '10x', 'secret sauce', 'happy holidays', 'double your leads', 'guaranteed results', '#1 on google'];
 // "#1 on Google" is allowed only inside a sentence that says we won't promise it.
 const ALLOWED_CONTEXT = [/nobody can promise #1 on google/i];
 
