@@ -75,7 +75,7 @@ const business = {
   address: { '@type': 'PostalAddress', addressRegion: 'FL', addressCountry: 'US' },
   areaServed,
   founder: { '@id': ID.kyle },
-  knowsAbout: ['Google Business Profile', 'Local SEO', 'Apple Business Connect', 'Bing Places', 'Online reviews', 'Review replies', 'Social media content', 'Missed-call text-back', 'AI search visibility', 'Answer engine optimization', 'Generative engine optimization'],
+  knowsAbout: ['Google Business Profile', 'Local SEO', 'Apple Business Connect', 'Bing Places', 'Online reviews', 'Review replies', 'Social media content', 'AI search visibility', 'Answer engine optimization', 'Generative engine optimization'],
   contactPoint: { '@type': 'ContactPoint', telephone: B.phone, email: B.email, contactType: 'sales', areaServed: 'US-FL', availableLanguage: 'en' },
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Putnam Lead Group pricing', itemListElement: offers },
   sameAs: Object.values(B.social),
@@ -292,8 +292,9 @@ const checks = (items) => `<ul class="checks">\n${items.map((i) => `        <li>
 // ---- Shared copy -------------------------------------------------------------
 const CLEANUP_ITEMS = [
   'Your Google Business Profile set up or cleaned up: name, hours, services, service areas, categories and photos',
-  'Apple Maps and Bing listings created or corrected',
+  'Apple Maps, Bing and Yelp listings created or corrected, and your Facebook page details matched',
   'Your name, phone and website made to match on the main directories',
+  'A one-tap Google review link and a short, honest ask you can text every customer',
   'Help getting back a Google profile you lost access to',
   'If you have a website: wording that says what you do and where, and Google and Bing able to read it',
   'A plain-English list of everything we fixed',
@@ -350,7 +351,7 @@ const pages = [];
   <div class="wrap hero-copy">
     <p class="eyebrow">Veteran-owned &middot; Palatka &amp; Putnam County, FL</p>
     <h1 id="hero-h">Get found.<br>Get trusted.<br><span class="grad">Get the job.</span></h1>
-    <p class="lede">Local marketing for Putnam County service businesses. We get you showing up on Google Maps and in AI search, earning more real reviews, and getting back to new leads fast, even while you&rsquo;re on a job.</p>
+    <p class="lede">Local marketing for Putnam County service businesses. We get you showing up on Google Maps and in AI search, earning more real reviews, and making it one tap for a new customer to call you.</p>
     <p class="trades">For lawn care, HVAC, plumbing, roofing and other contractors in Palatka and across Putnam County.</p>
     <div class="cta-row">
       ${bookBtn()}
@@ -381,7 +382,7 @@ const pages = [];
   <div class="wrap">
     <p class="eyebrow reveal">What we do</p>
     <h2 id="svc-h" class="reveal">Less chasing.<br>More booked jobs.</h2>
-    <p class="sub reveal">Five services, one goal: more calls and bids from your own neighbors, without hiring anyone.</p>
+    <p class="sub reveal">Four services now and one coming next, with one goal: more calls and bids from your own neighbors, without hiring anyone.</p>
 
     <div class="bento">
       <article class="tile tile-lg reveal">
@@ -394,16 +395,16 @@ const pages = [];
 
       <article class="tile tile-lg tile-dark reveal">
         <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20.5l1.4-4.7A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
-        <h3>Follow-up that runs itself.</h3>
-        <p>Missed-call text-back, after-hours website chat, quote follow-ups and appointment reminders. Your customers get a friendly reply right away, in your business&rsquo;s name.</p>
-        <p class="change"><b>What changes:</b> fewer leads slip away while you&rsquo;re on a roof, under a sink or behind a mower, and fewer no-shows.</p>
-        <a class="link-arrow light" href="#see-it">See what your customer sees</a>
+        <h3>Follow-up help, coming next.</h3>
+        <p>Missed-call text-back, quote follow-ups and appointment reminders, set up on your own phone so every text comes from you. Not part of the posted plans yet. Ask about it on the call.</p>
+        <p class="change"><b>Why it matters:</b> a missed call while you&rsquo;re on a roof, under a sink or behind a mower is often a lost job.</p>
+        <a class="link-arrow light" href="#see-it">See the demos</a>
       </article>
 
       <article class="tile reveal">
         <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
-        <h3>Turn happy customers into reviews.</h3>
-        <p>Every review gets a thoughtful reply. Happy customers get an easy, polite ask. Real reviews only, never fake or bought.</p>
+        <h3>Turn customers into reviews.</h3>
+        <p>Every review gets a thoughtful reply. Every customer gets the same easy, polite ask. Real reviews only, never fake or bought.</p>
         <p class="change"><b>What changes:</b> a profile that looks cared for, with fresh reviews that help strangers trust you.</p>
         <a class="link-arrow" href="/services/reviews/">Review help</a>
       </article>
@@ -411,7 +412,7 @@ const pages = [];
       <article class="tile reveal">
         <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3.2"/><path d="M17 8.5h.01"/></svg></span>
         <h3>Show your work, without the extra work.</h3>
-        <p>Posts, Reels and job-site photos that show real jobs and real results. You snap the photos; we turn them into content.</p>
+        <p>A Google post every week and your job photos added to your profile, in the Keep It Fresh plan. You snap the photos; we turn them into posts.</p>
         <p class="change"><b>What changes:</b> you look established and busy, because you are.</p>
       </article>
 
@@ -431,14 +432,14 @@ const pages = [];
   <div class="wrap">
     <p class="eyebrow reveal">See it work</p>
     <h2 id="see-h" class="reveal">See it from your<br>customer&rsquo;s side.</h2>
-    <p class="sub reveal">Six everyday moments where a lead usually goes cold, and what your customer sees instead. You keep working; the reply goes out.</p>
+    <p class="sub reveal">Six everyday moments where a lead usually goes cold. These demos show the follow-up help we&rsquo;re building next. It isn&rsquo;t part of the posted plans yet.</p>
   </div>
   <div class="rail-wrap">
     <ul class="rail" id="rail" aria-label="Six short demo videos">
 ${[
   ['missed-call', 'Demo: a missed caller gets a text back and books an estimate', 'Missed a call on the job?', 'The caller gets a friendly text, and the estimate still gets booked.'],
   ['after-hours-chat', 'Demo: a website visitor chats after hours and a callback is set', 'Closed for the night?', 'Your website still answers and sets up a callback for the morning.'],
-  ['review-request', 'Demo: a happy customer gets a polite review request and leaves a review', 'Forget to ask for reviews?', 'Happy customers get a polite, well-timed ask.'],
+  ['review-request', 'Demo: a customer gets a polite review request and leaves a review', 'Forget to ask for reviews?', 'Every customer gets a polite, well-timed ask.'],
   ['appointment-reminder', 'Demo: an appointment reminder lets the customer reschedule instead of no-showing', 'Drove out for a no-show?', 'A reminder goes out first, so plans change before you&rsquo;re in the truck.'],
   ['quote-follow-up', 'Demo: a quiet quote gets a friendly follow-up and the job is booked', 'Quotes going quiet?', 'A friendly check-in keeps your bid top of mind.'],
   ['weekend-message', 'Demo: a weekend message gets a reply and an estimate is booked', 'Weekend messages piling up?', 'They get a reply, and Monday starts with jobs on the books.'],
@@ -463,7 +464,7 @@ ${[
     <div>
       <p class="eyebrow reveal">Free, no strings</p>
       <h2 id="check-h" class="reveal">Text me your business name.</h2>
-      <p class="sub reveal">I&rsquo;ll look you up the way a new customer would, on Google, on Maps and in AI search, and text you back what I see. Free, whether or not you ever hire us.</p>
+      <p class="sub reveal">I&rsquo;ll look you up the way a new customer would, on Google, on Maps and in AI search, and text you back the 3 things I&rsquo;d fix first. Free, whether or not you ever hire us.</p>
     </div>
     <div class="check-card reveal">
       <ol>
@@ -530,7 +531,7 @@ ${[
         <div class="cta-row">${bookBtn('Book a free call', 'btn btn-teal')}</div>
       </article>
     </div>
-    <p class="fine reveal">Missed-call text-back and other follow-ups are quoted on the call. <a class="link-arrow" href="/pricing/">Full pricing details</a></p>
+    <p class="fine reveal">Follow-up help like missed-call text-back isn&rsquo;t in the posted plans yet. Ask on the call. <a class="link-arrow" href="/pricing/">Full pricing details</a></p>
   </div>
 </section>
 
@@ -602,7 +603,7 @@ ${pageHero(items, 'Pricing', `Two prices.<br>No surprises.`, `A $${B.cleanup} on
         <div class="cta-row">${bookBtn('Book a free call', 'btn btn-teal')}</div>
       </article>
     </div>
-    <p class="fine">Missed-call text-back, after-hours chat and other follow-ups are quoted on the call, so you only pay for what fits your business.</p>
+    <p class="fine">Follow-up help like missed-call text-back isn&rsquo;t in the posted plans yet. If it would help your business, ask on the call. Any text it sends comes from your own phone and account.</p>
   </div>
 </section>
 
@@ -705,9 +706,9 @@ ${pageHero(items, 'Google Business Profile', 'Show up when Putnam County searche
   const faqs = [
     { q: 'Do you write or buy reviews?', a: 'Never. Every review comes from a real customer. Fake reviews break Google&rsquo;s rules and the law, and they can get a profile penalized.' },
     { q: 'Can I give a discount for a review?', a: 'No. Offering anything in exchange for a review breaks Google&rsquo;s rules. We make asking easy and polite instead.' },
-    { q: 'Who sends the review request?', a: 'It goes out in your business&rsquo;s name, to customers you&rsquo;ve finished a job for. You see the wording before anything is sent.' },
+    { q: 'Who sends the review request?', a: 'You do, from your own phone or email, to customers you&rsquo;ve finished a job for. We write the short ask and set up the one-tap link. We never text your customers for you.' },
     { q: 'How do you handle a bad review?', a: 'With a calm, professional reply that thanks them, never argues, and offers to make it right offline. Future customers read how you respond as much as the review itself.' },
-    { q: 'Is this included in the price?', a: `Review replies and review requests are part of the $${B.monthly} a month plan.` },
+    { q: 'Is this included in the price?', a: `The review link and the ask come with the $${B.cleanup} cleanup. Replies to every review are part of the $${B.monthly} a month plan.` },
   ];
   const p = {
     path: '/services/reviews/', file: 'services/reviews/index.html', priority: '0.8',
@@ -717,13 +718,13 @@ ${pageHero(items, 'Google Business Profile', 'Show up when Putnam County searche
   p.schema = [business, webPage(p), crumbLd(items), service('Review replies and review requests', 'Online review management', 'Replies to every Google review and polite, rule-following review requests to real customers, for local service businesses in Putnam County, Florida.', p.path, [ID.monthly]), faqLd(faqs)];
   p.body = `
 <main id="main">
-${pageHero(items, 'Reviews', 'Turn happy customers into real reviews.', 'Strangers trust your reviews before they trust you. We reply to every review in your business&rsquo;s name and make it easy for happy customers to leave one. Real reviews only.')}
+${pageHero(items, 'Reviews', 'Turn customers into real reviews.', 'Strangers trust your reviews before they trust you. We reply to every review in your business&rsquo;s name and make it easy for every customer to leave one. Real reviews only.')}
 
 <section class="section tight" aria-labelledby="how-h">
   <div class="wrap prose">
     <h2 id="how-h">What your customers see</h2>
     <ul>
-      <li><strong>After a job:</strong> a short, friendly thank-you with a one-tap link to leave a review.</li>
+      <li><strong>After a job:</strong> a short, friendly thank-you from you, with a one-tap link to leave a review.</li>
       <li><strong>On your profile:</strong> every review answered, the good ones with thanks and the hard ones with grace.</li>
       <li><strong>Over time:</strong> fresh reviews that show you&rsquo;re busy and you care.</li>
     </ul>
@@ -735,7 +736,7 @@ ${pageHero(items, 'Reviews', 'Turn happy customers into real reviews.', 'Strange
       'We ask every customer the same way, happy or not',
       'We never write, buy or fake a review',
     ])}
-    <p class="note">Review replies and review requests are part of the <a href="/pricing/#monthly">$${B.monthly} a month plan</a>.</p>
+    <p class="note">The review link and the ask come with the <a href="/pricing/#cleanup">$${B.cleanup} cleanup</a>. Replies to every review are part of the <a href="/pricing/#monthly">$${B.monthly} a month plan</a>.</p>
     <div class="cta-row">${bookBtn()} ${textLink()}</div>
   </div>
 </section>
@@ -873,7 +874,7 @@ ${pageHero(items, 'About', 'Veteran-owned. Local to Putnam County.', `I&rsquo;m 
       '<strong>You deal with me directly.</strong> No call centers and no hand-offs.',
       '<strong>Plain English.</strong> You&rsquo;ll always know what I did and why.',
       '<strong>Real reviews only.</strong> Never fake, bought or traded for a discount.',
-      '<strong>No guarantees I can&rsquo;t keep.</strong> Nobody can promise #1 on Google, so I won&rsquo;t.',
+      '<strong>No ranking promises.</strong> Nobody can promise #1 on Google, so I won&rsquo;t.',
       '<strong>Your accounts stay yours.</strong> I work as a manager you can remove at any time.',
       '<strong>No long contracts.</strong> The monthly plan is month to month.',
     ])}
@@ -970,7 +971,7 @@ ${pageHero(items, 'Free guide', 'Does ChatGPT recommend your business?', 'More p
     <ol>
       <li>Finish every section of your Google Business Profile, especially services and service area.</li>
       <li>Use the exact same business name, phone and town list everywhere.</li>
-      <li>Ask every happy customer for a Google review, and reply to every review you get.</li>
+      <li>Ask every customer for a Google review the same way, and reply to every review you get.</li>
       <li>Put a sentence on your website like &ldquo;We do lawn care in Palatka, East Palatka and Interlachen.&rdquo;</li>
       <li>Add a short questions-and-answers section to your site with the questions customers really ask.</li>
       <li>Claim your free listings on Apple Maps, Bing and Yelp and match them to Google.</li>
@@ -1165,7 +1166,7 @@ const llms = `# ${B.name}
 
 - One-time cleanup: $${B.cleanup}. Google Business Profile setup or cleanup, Apple Maps and Bing listings, matching name, phone and website on the main directories, help recovering a lost Google profile, and website wording fixes if the business has a site. One location.
 - Keep It Fresh monthly plan: $${B.monthly} a month, month to month, stop with 30 days' written notice. A Google post every week, job photos added, every review answered, holiday hours handled and a plain-English monthly report. Founding 6: the first 6 monthly clients keep $${B.monthly} a month for as long as they stay.
-- Follow-up automations such as missed-call text-back are quoted on the call.
+- Follow-up automations such as missed-call text-back are not part of the posted plans yet. PLG does not send texts to a client's customers.
 - Not included: new website builds, paid ads, paid tools, or any promise of rankings or lead counts.
 
 ## How PLG works
