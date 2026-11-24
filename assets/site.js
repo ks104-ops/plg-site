@@ -1,6 +1,11 @@
 /* Putnam Lead Group — progressive enhancement. The page works without this file. */
 (function () {
   'use strict';
+  /* Don't let other sites show this site inside a frame (clickjacking). */
+  if (window.top !== window.self) {
+    try { window.top.location.replace(window.location.href); } catch (e) { document.documentElement.hidden = true; }
+    return;
+  }
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var saveData = navigator.connection && navigator.connection.saveData;
   var hasIO = 'IntersectionObserver' in window;

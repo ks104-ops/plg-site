@@ -79,6 +79,7 @@ const business = {
   contactPoint: { '@type': 'ContactPoint', telephone: B.phone, email: B.email, contactType: 'sales', areaServed: 'US-FL', availableLanguage: 'en' },
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Putnam Lead Group pricing', itemListElement: offers },
   sameAs: Object.values(B.social),
+  potentialAction: { '@type': 'ReserveAction', name: 'Book a free 15-minute call', target: { '@type': 'EntryPoint', urlTemplate: B.book, actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'] } },
 };
 const kyle = { '@type': 'Person', '@id': ID.kyle, name: B.founder, jobTitle: 'Founder', description: 'Marine Corps veteran and founder of Putnam Lead Group, based in the Palatka area of Putnam County, Florida.', image: `${SITE}/assets/brand/kyle.jpg`, worksFor: { '@id': ID.biz }, url: `${SITE}/about/` };
 const website = { '@type': 'WebSite', '@id': ID.site, url: `${SITE}/`, name: B.name, inLanguage: 'en-US', publisher: { '@id': ID.biz } };
@@ -97,20 +98,28 @@ const ICON_PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l
 const ICON_TEXT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20.5l1.4-4.7A8 8 0 1 1 21 12z"/></svg>';
 const ICON_CAL = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>';
 
+// Cache-busting: the CSS and JS links change whenever the files change.
+import { readFileSync } from 'node:fs';
+const ver = (f) => createHash('sha256').update(readFileSync(join(ROOT, f))).digest('hex').slice(0, 10);
+const CSS_URL = `/assets/site.css?v=${ver('assets/site.css')}`;
+const JS_URL = `/assets/site.js?v=${ver('assets/site.js')}`;
+
 const INLINE_JS = "document.documentElement.classList.add('js')";
 const INLINE_HASH = createHash('sha256').update(INLINE_JS).digest('base64');
 const CSP = [
   "default-src 'self'",
-  `script-src 'self' 'sha256-${INLINE_HASH}' https://static.cloudflareinsights.com`,
+  `script-src 'self' 'sha256-${INLINE_HASH}'`,
   "style-src 'self'",
   "img-src 'self' data:",
   "media-src 'self'",
   "font-src 'self'",
-  "connect-src 'self' https://cloudflareinsights.com",
+  "connect-src 'self'",
+  "manifest-src 'self'",
+  "worker-src 'none'",
   "frame-src 'none'",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'none'",
   'upgrade-insecure-requests',
 ].join('; ');
 
@@ -155,7 +164,7 @@ ${p.noindex ? '' : `<link rel="canonical" href="${url}">\n`}<link rel="alternate
 <meta name="twitter:description" content="${attr(p.description)}">
 <meta name="twitter:image" content="${og}">
 <meta name="twitter:image:alt" content="Putnam Lead Group logo">
-${p.preload || ''}<link rel="stylesheet" href="/assets/site.css">
+${p.preload || ''}<link rel="stylesheet" href="${CSS_URL}">
 <script type="application/ld+json">
 ${JSON.stringify(graph)}
 </script>
@@ -230,6 +239,8 @@ function footer(p) {
         <li><a href="/about/">About Kyle</a></li>
         <li><a href="/service-area/">Service area</a></li>
         <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="/accessibility/">Accessibility</a></li>
       </ul>
     </div>
     <div>
@@ -255,7 +266,7 @@ function footer(p) {
   <a href="${B.book}" target="_blank" rel="noopener">${ICON_CAL}Book${newTab}</a>
 </nav>
 
-<script src="/assets/site.js" defer></script>
+<script src="${JS_URL}" defer></script>
 </body>
 </html>
 `;
@@ -333,11 +344,11 @@ const pages = [];
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-h">
   <div class="wrap hero-copy">
-    <p class="eyebrow reveal">Veteran-owned &middot; Palatka &amp; Putnam County, FL</p>
-    <h1 id="hero-h" class="reveal">Get found.<br>Get trusted.<br><span class="grad">Get the job.</span></h1>
-    <p class="lede reveal">Local marketing for Putnam County service businesses. We get you showing up on Google Maps and in AI search, earning more real reviews, and getting back to new leads fast, even while you&rsquo;re on a job.</p>
-    <p class="trades reveal">For lawn care, HVAC, plumbing, roofing and other contractors in Palatka and across Putnam County.</p>
-    <div class="cta-row reveal">
+    <p class="eyebrow">Veteran-owned &middot; Palatka &amp; Putnam County, FL</p>
+    <h1 id="hero-h">Get found.<br>Get trusted.<br><span class="grad">Get the job.</span></h1>
+    <p class="lede">Local marketing for Putnam County service businesses. We get you showing up on Google Maps and in AI search, earning more real reviews, and getting back to new leads fast, even while you&rsquo;re on a job.</p>
+    <p class="trades">For lawn care, HVAC, plumbing, roofing and other contractors in Palatka and across Putnam County.</p>
+    <div class="cta-row">
       ${bookBtn()}
       <a class="link-arrow" href="tel:${B.phone}">or call ${B.phoneTxt}</a>
     </div>
@@ -925,14 +936,95 @@ ${pageHero(items, 'Privacy', 'Your information, plainly.', 'Short version: this 
 <section class="section tight" aria-labelledby="priv-h">
   <div class="wrap prose">
     <h2 id="priv-h">This website</h2>
-    <p>This site has no contact forms, no ad trackers and no cookies of its own. Like any website, the company that hosts it may keep standard server logs, such as which pages were visited.</p>
+    <p>This site has no contact forms, no ad trackers, no analytics scripts and no cookies of its own. It doesn&rsquo;t load any code from other companies.</p>
+    <p>Like any website, the companies that host and deliver it may keep standard server logs, such as which pages were visited and when. The network that delivers the site may also set a strictly necessary security cookie to block bots. It isn&rsquo;t used for ads or tracking.</p>
     <h2>When you call, text, email or book</h2>
     <p>We use your name, number, email and what you tell us only to reply to you and to do the work you ask for. We never sell or rent your information.</p>
     <p>Booking a call uses Google&rsquo;s booking page, which follows Google&rsquo;s own privacy policy.</p>
+    <h2>Text messages</h2>
+    <p>If you text us, we&rsquo;ll text you back about what you asked. We don&rsquo;t send marketing texts unless you ask for them. Reply STOP at any time and we won&rsquo;t text you again.</p>
     <h2>Client accounts</h2>
     <p>If you hire us, we only access the accounts you invite us to, as a manager you can remove at any time.</p>
     <h2>Questions</h2>
     <p>Email <a href="mailto:${B.email}">${B.email}</a> or call <a href="tel:${B.phone}">${B.phoneTxt}</a>.</p>
+    <p class="updated">${B.legal} &middot; Updated November 24, 2026</p>
+  </div>
+</section>
+</main>
+`;
+  pages.push(p);
+}
+
+// TERMS
+{
+  const items = [['/', 'Home'], ['/terms/', 'Terms']];
+  const p = {
+    path: '/terms/', file: 'terms/index.html', priority: '0.3',
+    title: 'Terms of Use | Putnam Lead Group',
+    description: 'Plain-English terms for using putnamleads.com: what the site is for, how prices work, no ranking guarantees, and who to contact.',
+  };
+  p.schema = [business, webPage(p), crumbLd(items)];
+  // Plain-English website terms. Have an attorney review before relying on them for a dispute.
+  p.body = `
+<main id="main">
+${pageHero(items, 'Terms', 'Terms of use, plainly.', 'By using this website, you agree to these simple terms. Work for clients is covered by the written agreement we make together.', false)}
+
+<section class="section tight" aria-labelledby="terms-h">
+  <div class="wrap prose">
+    <h2 id="terms-h">What this site is for</h2>
+    <p>This website explains what ${B.legal} does and how to reach us. It&rsquo;s general information, not legal, tax or financial advice.</p>
+    <h2>Prices</h2>
+    <p>Prices on this site are for one business location in Putnam County, Florida. Before any work starts, we confirm in writing what&rsquo;s included and what it costs. Prices on the site may change, but the price we agree on is the price you pay.</p>
+    <h2>No guarantees on results</h2>
+    <p>Google, Apple, Bing and AI tools decide what they show. We don&rsquo;t promise rankings, review counts, AI recommendations or a number of leads, and you should be careful with anyone who does.</p>
+    <h2>Your accounts</h2>
+    <p>Your Google profile, listings, website and social accounts stay yours. We only work in accounts you invite us to, and you can remove us at any time.</p>
+    <h2>Text messages</h2>
+    <p>If you text us, we&rsquo;ll reply about what you asked. Reply STOP at any time and we won&rsquo;t text you again. Message and data rates from your carrier may apply.</p>
+    <h2>Other websites</h2>
+    <p>This site links to other services, like our booking page on Google and our social media pages. Those services have their own terms and privacy policies.</p>
+    <h2>Our content</h2>
+    <p>The text, logo, photos and demo videos on this site belong to ${B.legal}. The demo conversations use example names and numbers.</p>
+    <h2>Florida law</h2>
+    <p>These terms are governed by the laws of the State of Florida.</p>
+    <h2>Questions</h2>
+    <p>Email <a href="mailto:${B.email}">${B.email}</a> or call <a href="tel:${B.phone}">${B.phoneTxt}</a>.</p>
+    <p class="updated">${B.legal} &middot; Updated November 24, 2026</p>
+  </div>
+</section>
+</main>
+`;
+  pages.push(p);
+}
+
+// ACCESSIBILITY
+{
+  const items = [['/', 'Home'], ['/accessibility/', 'Accessibility']];
+  const p = {
+    path: '/accessibility/', file: 'accessibility/index.html', priority: '0.3',
+    title: 'Accessibility | Putnam Lead Group',
+    description: 'How putnamleads.com works for people who use screen readers, keyboards or zoom, and how to tell us about a problem so we can fix it.',
+  };
+  p.schema = [business, webPage(p), crumbLd(items)];
+  p.body = `
+<main id="main">
+${pageHero(items, 'Accessibility', 'Everyone should be able to use this site.', 'We build this website to work for people who use screen readers, keyboards, zoom or voice control, on phones and computers.', false)}
+
+<section class="section tight" aria-labelledby="a11y-h">
+  <div class="wrap prose">
+    <h2 id="a11y-h">What we aim for</h2>
+    <p>We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 at level AA, the standard most often used for the Americans with Disabilities Act (ADA).</p>
+    ${checks([
+      'Every page works with a keyboard alone, with a visible focus outline',
+      'A &ldquo;Skip to content&rdquo; link on every page',
+      'Text and buttons meet color contrast guidelines',
+      'Images and demo videos have text descriptions, and the demo videos have no sound to miss',
+      'Motion is reduced for anyone who turns on &ldquo;reduce motion&rdquo; on their device',
+      'Buttons and links are big enough to tap',
+      'Every way to reach us is plain text: phone, text message and email',
+    ])}
+    <h2>Found a problem?</h2>
+    <p>If anything on this site is hard to use, please tell us and we&rsquo;ll fix it. Call or text <a href="tel:${B.phone}">${B.phoneTxt}</a> or email <a href="mailto:${B.email}">${B.email}</a>. We&rsquo;re also happy to share any information from this site another way, like by phone or email.</p>
     <p class="updated">${B.legal} &middot; Updated November 24, 2026</p>
   </div>
 </section>
@@ -1017,7 +1109,23 @@ const llms = `# ${B.name}
 - [Service area](${SITE}/service-area/): towns served in Putnam County
 - [About](${SITE}/about/): ${B.founder} and how PLG works
 - [60-second Google profile check](${SITE}/guides/google-profile-check/): free self-check for local businesses
+- [Privacy](${SITE}/privacy/), [Terms](${SITE}/terms/), [Accessibility](${SITE}/accessibility/)
 `;
 writeFileSync(join(ROOT, 'llms.txt'), llms);
 
-console.log(`Built ${pages.length} pages, sitemap.xml and llms.txt`);
+const security = `Contact: mailto:${B.email}
+Contact: tel:${B.phone}
+Expires: 2027-11-24T00:00:00.000Z
+Preferred-Languages: en
+Canonical: ${SITE}/.well-known/security.txt
+Policy: ${SITE}/.well-known/security.txt
+
+# Found a security problem with putnamleads.com? Please email us.
+# This is a static website with no logins, forms or stored customer data.
+# Please don't run automated scans that could slow the site down.
+`;
+mkdirSync(join(ROOT, '.well-known'), { recursive: true });
+writeFileSync(join(ROOT, '.well-known', 'security.txt'), security);
+writeFileSync(join(ROOT, 'security.txt'), security);
+
+console.log(`Built ${pages.length} pages, sitemap.xml, llms.txt and security.txt`);

@@ -102,7 +102,7 @@ for (const [p, f] of pages) {
   for (const m of html.matchAll(/\s(?:href|src|srcset|poster|data-src)="([^"]+)"/g)) {
     for (const raw of m[1].split(',').map((s) => s.trim().split(/\s+/)[0])) {
       if (!raw || /^(https?:|mailto:|tel:|sms:|data:)/.test(raw)) continue;
-      const [pathPart, hash] = raw.split('#');
+      const [pathPart, hash] = raw.replace(/\?[^#]*/, '').split('#');
       let target = pathPart || p;
       if (!target.startsWith('/')) target = join(dirname(p.endsWith('/') ? p + 'x' : p), target).replace(/\\/g, '/');
       if (target.endsWith('/') || target === '') {
@@ -149,6 +149,15 @@ for (const [p, f] of pages) {
     for (const m of lower.matchAll(/\$(\d+)/g)) if (!['299', '175'].includes(m[1])) fail(rel, `unexpected price $${m[1]}`);
   }
 
+  // Security: no outside code, no inline event handlers, no forms posting anywhere
+  for (const m of html.matchAll(/<script\b[^>]*\ssrc="([^"]+)"/g)) if (!m[1].startsWith('/')) fail(rel, `loads a script from outside the site: ${m[1]}`);
+  for (const m of html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)) if (!m[1].startsWith('/')) fail(rel, `loads a stylesheet from outside the site: ${m[1]}`);
+  if (/<iframe\b/i.test(html)) fail(rel, 'has an iframe');
+  if (/\son[a-z]+="/i.test(html)) fail(rel, 'has an inline event handler (onclick= and similar)');
+  if (/<form\b/i.test(html)) fail(rel, 'has a form; forms need a reviewed backend with spam protection first');
+  if (/http:\/\//.test(html.replace(/http:\/\/schema\.org/g, ''))) fail(rel, 'has an insecure http:// link');
+  if (!csp || !/default-src 'self'/.test(csp) || !/object-src 'none'/.test(csp) || !/base-uri 'self'/.test(csp)) fail(rel, 'security policy is missing or too loose');
+
   // Secrets
   if (/(api[_-]?key|secret|password)\s*[:=]\s*["'][^"']{8,}/i.test(html)) fail(rel, 'looks like a secret');
 }
@@ -160,6 +169,31 @@ for (const [p, f] of pages) {
 }
 // Every sitemap URL is a real page
 for (const u of sitemapUrls) if (!pages.has(u.replace(SITE, ''))) fail('sitemap.xml', `lists ${u}, which doesn't exist`);
+
+// security.txt is present, the same in both places, and not expired
+for (const f of ['.well-known/security.txt', 'security.txt']) {
+  const fp = join(ROOT, f);
+  if (!existsSync(fp)) { fail(f, 'missing'); continue; }
+  const t = readFileSync(fp, 'utf8');
+  const exp = (t.match(/^Expires: (.+)$/m) || [])[1];
+  if (!/^Contact: /m.test(t)) fail(f, 'no Contact line');
+  if (!exp || new Date(exp) < new Date()) fail(f, 'Expires is missing or in the past');
+  else if (new Date(exp) - new Date() < 30 * 864e5) warn(f, 'expires within 30 days; update the date in build.mjs');
+}
+if (!/^\s*- \.well-known/m.test(readFileSync(join(ROOT, '_config.yml'), 'utf8'))) fail('_config.yml', 'must include .well-known so security.txt is published');
+
+// Secrets anywhere in the published files or the build scripts
+const TOKEN = /\b(?:ghp_|github_pat_|sk-[A-Za-z0-9]|xox[bpa]-|AKIA)[A-Za-z0-9_-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----/;
+function walkAll(dir, out = []) {
+  for (const n of readdirSync(dir)) {
+    if (n === '.git' || n === 'node_modules') continue;
+    const p2 = join(dir, n);
+    if (statSync(p2).isDirectory()) walkAll(p2, out);
+    else if (/\.(html|js|mjs|css|txt|xml|json|webmanifest|yml|md)$/.test(n)) out.push(p2);
+  }
+  return out;
+}
+for (const f of walkAll(ROOT)) if (TOKEN.test(readFileSync(f, 'utf8'))) fail(relative(ROOT, f), 'looks like it contains a secret or private key');
 
 for (const w of warns) console.log('warn  ' + w);
 for (const e of errors) console.log('FAIL  ' + e);

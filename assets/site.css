@@ -198,6 +198,7 @@ p{margin:0}
 .menu-panel a{display:flex;align-items:center;min-height:52px;border-bottom:1px solid var(--line);color:var(--navy);font-size:19px;font-weight:600;text-decoration:none}
 .menu-panel li:last-child a{border-bottom:0}
 @media (max-width:860px){.menu{display:block}}
+@media (max-width:640px){.nav .btn-sm{display:none}.menu{margin-left:auto}}
 .nav-links a[aria-current="page"]{opacity:1;background:var(--bg-soft)}
 
 /* Quick contact bar on phones */

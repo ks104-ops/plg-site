@@ -1,0 +1,8 @@
+# GitHub Pages settings for putnamleads.com.
+# The site is plain HTML. This file only makes sure /.well-known/security.txt
+# is published (folders starting with a dot are skipped by default) and that
+# the build tools in .github/ are never published.
+include:
+  - .well-known
+exclude:
+  - .github

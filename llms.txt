@@ -37,3 +37,4 @@
 - [Service area](https://putnamleads.com/service-area/): towns served in Putnam County
 - [About](https://putnamleads.com/about/): Kyle Simmons and how PLG works
 - [60-second Google profile check](https://putnamleads.com/guides/google-profile-check/): free self-check for local businesses
+- [Privacy](https://putnamleads.com/privacy/), [Terms](https://putnamleads.com/terms/), [Accessibility](https://putnamleads.com/accessibility/)
