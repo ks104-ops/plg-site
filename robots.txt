@@ -1,0 +1,5 @@
+# Putnam Lead Group. Search engines and AI assistants are welcome.
+User-agent: *
+Allow: /
+
+Sitemap: https://putnamleads.com/sitemap.xml
