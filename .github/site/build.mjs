@@ -50,7 +50,7 @@ const textLink = (label = 'or text me your business name', cls = 'link-arrow') =
 // ---- Structured data -------------------------------------------------------
 const ID = { biz: `${SITE}/#business`, site: `${SITE}/#website`, kyle: `${SITE}/#kyle`, cleanup: `${SITE}/pricing/#cleanup`, monthly: `${SITE}/pricing/#monthly` };
 const offers = [
-  { '@type': 'Offer', '@id': ID.cleanup, name: 'One-time cleanup', description: 'Google Business Profile, Apple Maps, Bing and directory cleanup, plus website wording fixes, for one location.', price: String(B.cleanup), priceCurrency: 'USD', url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
+  { '@type': 'Offer', '@id': ID.cleanup, name: 'One-time cleanup', description: 'Google Business Profile, Apple Maps, Bing, Yelp and directory cleanup, a one-tap Google review link, and website wording fixes, for one location.', price: String(B.cleanup), priceCurrency: 'USD', url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
   { '@type': 'Offer', '@id': ID.monthly, name: 'Keep It Fresh monthly plan', description: 'A Google post every week, your job photos added, every review answered, holiday hours handled and a plain monthly report. Month to month, stop with 30 days written notice.', price: String(B.monthly), priceCurrency: 'USD', priceSpecification: { '@type': 'UnitPriceSpecification', price: String(B.monthly), priceCurrency: 'USD', unitCode: 'MON', referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' } }, url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
 ];
 const areaServed = [
@@ -313,7 +313,7 @@ const PRICE_FAQ = [
   { q: 'How much does Putnam Lead Group cost?', a: `Two simple prices. The one-time cleanup is $${B.cleanup}. The optional monthly plan is $${B.monthly} a month. You&rsquo;ll know the price before any work starts.` },
   { q: 'Is there a contract?', a: 'No long contract. The monthly plan is month to month. To stop, give us 30 days&rsquo; written notice, by email or text.' },
   { q: 'What is the Founding 6?', a: `Our first 6 monthly clients keep the $${B.monthly} a month price for as long as they stay on the plan, even if the price goes up later.` },
-  { q: 'What&rsquo;s included in the $299 cleanup?', a: 'We set up or clean up your Google Business Profile, create or fix your Apple Maps and Bing listings, make your name, phone and website match across the main directories, and tidy your website wording if you have one. You get a plain-English list of what we fixed.' },
+  { q: 'What&rsquo;s included in the $299 cleanup?', a: 'We set up or clean up your Google Business Profile, create or fix your Apple Maps, Bing and Yelp listings, match your Facebook page details, make your name, phone and website match across the main directories, set up a one-tap Google review link with a short ask you can text customers, and tidy your website wording if you have one. You get a plain-English list of what we fixed.' },
   { q: 'What does the $175 a month plan do?', a: 'The Keep It Fresh plan keeps your profile active after the cleanup: a new Google post every week, your job photos added, every review answered, holiday hours set, and a short plain-English report each month.' },
   { q: 'What&rsquo;s not included?', a: 'Building a brand-new website, paid ads, paid tools or directory upgrades, and any promise of rankings or a number of leads. If you ever need one of those, we&rsquo;ll quote it first.' },
   { q: 'Do I keep my accounts?', a: 'Yes. Your Google profile, listings, website and social accounts stay in your name. We work as a manager you can remove at any time.' },
@@ -1164,7 +1164,7 @@ const llms = `# ${B.name}
 
 ## Pricing
 
-- One-time cleanup: $${B.cleanup}. Google Business Profile setup or cleanup, Apple Maps and Bing listings, matching name, phone and website on the main directories, help recovering a lost Google profile, and website wording fixes if the business has a site. One location.
+- One-time cleanup: $${B.cleanup}. Google Business Profile setup or cleanup, Apple Maps, Bing and Yelp listings, Facebook page details matched, matching name, phone and website on the main directories, a one-tap Google review link and a short ask the owner texts customers, help recovering a lost Google profile, and website wording fixes if the business has a site. One location.
 - Keep It Fresh monthly plan: $${B.monthly} a month, month to month, stop with 30 days' written notice. A Google post every week, job photos added, every review answered, holiday hours handled and a plain-English monthly report. Founding 6: the first 6 monthly clients keep $${B.monthly} a month for as long as they stay.
 - Follow-up automations such as missed-call text-back are not part of the posted plans yet. PLG does not send texts to a client's customers.
 - Not included: new website builds, paid ads, paid tools, or any promise of rankings or lead counts.
