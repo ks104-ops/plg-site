@@ -654,7 +654,7 @@ ${pageHero(items, 'Pricing', `Two prices.<br>No surprises.`, `A $${B.cleanup} on
   const p = {
     path: '/services/google-business-profile/', file: 'services/google-business-profile/index.html', priority: '0.9',
     title: 'Google Business Profile Help in Palatka, FL | Putnam Lead Group',
-    description: `Google Business Profile setup, cleanup and recovery for Palatka and Putnam County service businesses, plus Apple Maps and Bing. Part of the $${B.cleanup} one-time cleanup.`,
+    description: `Google Business Profile setup, cleanup and recovery for Palatka and Putnam County businesses, plus Apple Maps and Bing. Part of the $${B.cleanup} one-time cleanup.`,
   };
   p.schema = [business, webPage(p), crumbLd(items), service('Google Business Profile cleanup', 'Google Business Profile management', 'Setup, cleanup and recovery of Google Business Profiles, plus Apple Maps and Bing listings, for local service businesses in Putnam County, Florida.', p.path, [ID.cleanup, ID.monthly]), faqLd(faqs)];
   p.body = `
