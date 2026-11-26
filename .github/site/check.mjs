@@ -146,7 +146,7 @@ for (const [p, f] of pages) {
     if (lower.includes(w) && !ALLOWED_CONTEXT.some((r) => r.test(lower))) fail(rel, `banned or outdated phrase: "${w}"`);
   }
   if (/\$\d/.test(lower)) {
-    for (const m of lower.matchAll(/\$(\d+)/g)) if (!['299', '175'].includes(m[1])) fail(rel, `unexpected price $${m[1]}`);
+    for (const m of lower.matchAll(/\$(\d+)/g)) if (!['299', '175', '79', '125'].includes(m[1])) fail(rel, `unexpected price $${m[1]}`);
   }
 
   // Security: no outside code, no inline event handlers, no forms posting anywhere
