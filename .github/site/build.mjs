@@ -28,6 +28,8 @@ const B = {
   founder: 'Kyle Simmons',
   cleanup: 299,
   monthly: 175,
+  reviewKit: 79,
+  extraPage: 125,
   social: {
     Facebook: 'https://www.facebook.com/profile.php?id=61596163680898',
     Instagram: 'https://www.instagram.com/putnamleads/',
@@ -52,6 +54,8 @@ const ID = { biz: `${SITE}/#business`, site: `${SITE}/#website`, kyle: `${SITE}/
 const offers = [
   { '@type': 'Offer', '@id': ID.cleanup, name: 'One-time cleanup', description: 'Google Business Profile, Apple Maps, Bing, Yelp and directory cleanup, a one-tap Google review link, and website wording fixes, for one location.', price: String(B.cleanup), priceCurrency: 'USD', url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
   { '@type': 'Offer', '@id': ID.monthly, name: 'Keep It Fresh monthly plan', description: 'A Google post every week, your job photos added, every review answered, holiday hours handled and a plain monthly report. Month to month, stop with 30 days written notice.', price: String(B.monthly), priceCurrency: 'USD', priceSpecification: { '@type': 'UnitPriceSpecification', price: String(B.monthly), priceCurrency: 'USD', unitCode: 'MON', referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' } }, url: `${SITE}/pricing/`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
+  { '@type': 'Offer', name: 'Review kit add-on', description: 'A QR code that opens your Google review page, a printable review card and counter sign in your colors, three short review-ask messages in your voice, and a one-page sheet on when to ask. Printing billed at cost.', price: String(B.reviewKit), priceCurrency: 'USD', url: `${SITE}/pricing/#add-ons`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
+  { '@type': 'Offer', name: 'Extra website page add-on', description: 'One new service or town page on the website you already have: wording written for you, your job photos, a Google search title and description, added to the menu and checked on a phone.', price: String(B.extraPage), priceCurrency: 'USD', url: `${SITE}/pricing/#add-ons`, seller: { '@id': ID.biz }, areaServed: { '@type': 'AdministrativeArea', name: 'Putnam County, Florida' } },
 ];
 const areaServed = [
   { '@type': 'AdministrativeArea', name: 'Putnam County, Florida', sameAs: 'https://en.wikipedia.org/wiki/Putnam_County,_Florida' },
@@ -604,6 +608,17 @@ ${pageHero(items, 'Pricing', `Two prices.<br>No surprises.`, `A $${B.cleanup} on
       </article>
     </div>
     <p class="fine">Follow-up help like missed-call text-back isn&rsquo;t in the posted plans yet. If it would help your business, ask on the call. Any text it sends comes from your own phone and account.</p>
+  </div>
+</section>
+
+<section class="section tight" id="add-ons" aria-labelledby="addons-h">
+  <div class="wrap prose">
+    <h2 id="addons-h">Add-ons</h2>
+    <p>Optional extras you can add to the cleanup or the monthly plan. Same deal: you&rsquo;ll know the price before any work starts.</p>
+    <ul>
+      <li><strong>Review kit: $${B.reviewKit} one time.</strong> A QR code that opens your Google review page, a printable review card and counter sign in your colors, three short review-ask messages in your voice (text, email and what to say at the end of a job), and a one-page sheet for you and your crew on when to ask. Printed cards or a stand are billed at what the print shop charges. Real reviews only: ask every customer, with no gifts or discounts for reviews.</li>
+      <li><strong>Extra website page: $${B.extraPage} a page.</strong> One new service or town page on the website you already have, such as &ldquo;Gate repair&rdquo; or &ldquo;Lawn care in Crescent City&rdquo;. The wording is written for you, with your job photos, a Google search title and description, a spot in your menu and a phone check.</li>
+    </ul>
   </div>
 </section>
 
@@ -1166,6 +1181,8 @@ const llms = `# ${B.name}
 
 - One-time cleanup: $${B.cleanup}. Google Business Profile setup or cleanup, Apple Maps, Bing and Yelp listings, Facebook page details matched, matching name, phone and website on the main directories, a one-tap Google review link and a short ask the owner texts customers, help recovering a lost Google profile, and website wording fixes if the business has a site. One location.
 - Keep It Fresh monthly plan: $${B.monthly} a month, month to month, stop with 30 days' written notice. A Google post every week, job photos added, every review answered, holiday hours handled and a plain-English monthly report. Founding 6: the first 6 monthly clients keep $${B.monthly} a month for as long as they stay.
+- Add-on, review kit: $${B.reviewKit} one time. A QR code to the business's Google review page, a printable review card and counter sign, three short review-ask messages in the owner's voice, and a one-page sheet on when to ask. Printing billed at cost. Real reviews only.
+- Add-on, extra website page: $${B.extraPage} per page. One new service or town page on the client's existing website, with the wording, job photos, search title and description, menu link and phone check included.
 - Follow-up automations such as missed-call text-back are not part of the posted plans yet. PLG does not send texts to a client's customers.
 - Not included: new website builds, paid ads, paid tools, or any promise of rankings or lead counts.
 
