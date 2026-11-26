@@ -1,0 +1,35 @@
+name: Site check
+
+# Runs on every pull request and on main. Uses no third-party actions:
+# only git and the Node that ships on GitHub's runner, so nothing outside
+# this repo can change what the check does.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Get the code
+        env:
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          git init -q .
+          git remote add origin "https://github.com/${REPO}.git"
+          git fetch -q --depth=1 origin "${SHA}"
+          git checkout -q FETCH_HEAD
+      - name: Pages match the source in .github/site/build.mjs
+        run: |
+          node --version
+          node .github/site/build.mjs
+          git diff --exit-code || (echo "::error::The HTML doesn't match build.mjs. Run: node .github/site/build.mjs and commit the result." && exit 1)
+      - name: Links, structured data, security and copy rules
+        run: node .github/site/check.mjs

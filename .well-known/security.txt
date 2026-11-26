@@ -1,0 +1,10 @@
+Contact: mailto:hello@putnamleads.com
+Contact: tel:+13862277496
+Expires: 2027-11-24T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://putnamleads.com/.well-known/security.txt
+Policy: https://putnamleads.com/.well-known/security.txt
+
+# Found a security problem with putnamleads.com? Please email us.
+# This is a static website with no logins, forms or stored customer data.
+# Please don't run automated scans that could slow the site down.
